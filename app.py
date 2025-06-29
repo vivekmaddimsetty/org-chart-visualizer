@@ -200,15 +200,19 @@ if df is not None:
         with st.expander("📊 Step 5: Org Insights"):
             st.markdown("### Employees per Role")
             chart_data = df["Role"].value_counts().reset_index()
+            
             chart_data.columns = ["Role", "Count"]
+            
             chart = alt.Chart(chart_data).mark_bar().encode(
                 x=alt.X("Count:Q"),
                 y=alt.Y("Role:N", sort='-x'),
                 color=alt.Color("Role:N", legend=None)
             ).properties(height=400)
+            
             st.altair_chart(chart, use_container_width=True)
 
         st.toast("✅ Org chart is ready!", icon="💼")
+
 
 
 
